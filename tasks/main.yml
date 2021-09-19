@@ -62,7 +62,6 @@
     src: "{{ traefik_binary_url }}"
     remote_src: true
     dest: "{{ traefik_tmp_path }}"
-    force: "{{ traefik_update }}"
   when: traefik_binary_url.endswith(".tar.gz")
 
 - name: Copy Expanded Traefik binary only to bin path

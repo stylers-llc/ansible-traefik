@@ -7,7 +7,7 @@ traefik_binary_url: https://github.com/containous/traefik/releases/download/v1.7
 traefik_tmp_path: "/tmp"
 traefik_bin_path: "{{ traefik_install_dir }}/traefik"
 traefik_template: traefik.toml
-traefik_config_file: /etc/traefik.toml
+traefik_config_file: /etc/traefik/traefik.toml
 # example variables for dynamic configs templates w/traefik version 2.x.x
 # traefik_dynamic_configs:
 #   - src: traefik-dynamic.toml
