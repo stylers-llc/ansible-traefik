@@ -1,15 +1,5 @@
 # tasks file for kibatic.traefik
 ---
-- name: Create environment variables file
-  template:
-    src: "{{ traefik_environment_file_template }}.j2"
-    dest: "{{ traefik_environment_file_dest }}"
-    owner: root
-    group: root
-    mode: 0644
-  notify:
-    - Restart traefik
-
 - name: Create traefik systemd unit
   template:
     src: "{{ traefik_systemd_unit_template }}.j2"
@@ -27,6 +17,16 @@
   with_items:
     - "{{ traefik_install_dir }}"
     - "{{ traefik_config_file | dirname }}"
+
+- name: Create environment variables file
+  template:
+    src: "{{ traefik_environment_file_template }}.j2"
+    dest: "{{ traefik_environment_file_dest }}"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Restart traefik
 
 - name: Copy traefik config file
   template:
