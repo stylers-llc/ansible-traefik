@@ -5,6 +5,7 @@ Description=Traefik
 
 [Service]
 Type=notify
+EnvironmentFile={{ traefik_environment_file_dest }}
 ExecStart={{ traefik_bin_path }} --configFile={{ traefik_config_file }}
 Restart=on-failure
 

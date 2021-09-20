@@ -1,16 +1,13 @@
 # tasks file for kibatic.traefik
 ---
-- name: Set GoDaddy API credentials
-  lineinfile:
-    dest: "/etc/environment"
-    state: present
-    regexp: "^{{ item.key }}="
-    line: "{{ item.key }}={{ item.value}}"
-  with_items:
-    - key: GODADDY_API_KEY
-      value: "{{ traefik_godaddy_api_key }}"
-    - key: GODADDY_API_SECRET
-      value: "{{ traefik_godaddy_api_secret }}"
+- name: Create environment variables file
+    src: "{{ traefik_environment_file_template }}.j2"
+    dest: "{{ traefik_environment_file_dest }}"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Restart traefik
 
 - name: Create traefik systemd unit
   template:
