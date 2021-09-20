@@ -1,6 +1,7 @@
 # tasks file for kibatic.traefik
 ---
 - name: Create environment variables file
+  template:
     src: "{{ traefik_environment_file_template }}.j2"
     dest: "{{ traefik_environment_file_dest }}"
     owner: root
